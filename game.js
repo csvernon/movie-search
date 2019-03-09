@@ -10,8 +10,12 @@ function themeSong(){
     // YOUR CODE GOES HERE!!! HINT: You will need to create a new div to hold the JSON.
     
     // Here we grab the text from the input box
-    var movie = $(this).attr('data-name');
 
+
+    var movie = $(this).attr('data-name');
+      if (movie = "undefined"){
+        movie = $("#movie-input").val().trim();
+      }
     // Here we construct our URL  
     var queryURL = "https://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=trilogy";
 
@@ -82,12 +86,11 @@ function themeSong(){
     }
     // Calling renderButtons which handles the processing of our movie array
     renderButtons();
-    themeSong();
     displayMovieInfo();
   });
 
   // Generic function for displaying the movieInfo
   $(document).on("click", ".movie", displayMovieInfo);
-
+  $(document).on("click", "#add-movie", displayMovieInfo);
   // Calling the renderButtons function to display the intial buttons
   renderButtons();
