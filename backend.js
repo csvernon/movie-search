@@ -5,6 +5,8 @@ function themeSong(){
   var movies = ["Guardians of the Galaxy", "Interstellar", "Avengers: Infinity War", "Thor: Ragnarok", "Game Of Thrones"];
 
   // Function for dumping the JSON content for each button into the div
+  var newMovie = "";
+  var movie = "undefined";
   function displayMovieInfo() {
 
     // YOUR CODE GOES HERE!!! HINT: You will need to create a new div to hold the JSON.
@@ -12,10 +14,10 @@ function themeSong(){
     // Here we grab the text from the input box
 
 
-    var movie = $(this).attr('data-name');
-      if (movie = "undefined"){
-        movie = $("#movie-input").val().trim();
-      }
+    movie = $(this).attr('data-name');
+        if (movie == undefined){
+          movie = newMovie;
+                 }
     // Here we construct our URL  
     var queryURL = "https://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=trilogy";
 
@@ -78,11 +80,12 @@ function themeSong(){
     event.preventDefault();
 
     // This line grabs the input from the textbox
-    var movie = $("#movie-input").val().trim();
+    movie = $("#movie-input").val().trim();
 
     // The movie from the textbox is then added to our array
     if (movie != ""){
     movies.push(movie);
+    newMovie = movie;
     }
     // Calling renderButtons which handles the processing of our movie array
     renderButtons();
@@ -91,6 +94,6 @@ function themeSong(){
 
   // Generic function for displaying the movieInfo
   $(document).on("click", ".movie", displayMovieInfo);
-  $(document).on("click", "#add-movie", displayMovieInfo);
+//   $(document).on("click", "#add-movie", displayMovieInfo);
   // Calling the renderButtons function to display the intial buttons
   renderButtons();
